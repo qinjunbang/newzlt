@@ -12,6 +12,7 @@ log.txt
 .vscode/
 npm-debug.log*
 *.keystore
+*.properties
 resources/android
 resources/ios
 
