@@ -11,6 +11,9 @@ log.txt
 *.sublime-workspace
 .vscode/
 npm-debug.log*
+*.keystore
+resources/android
+resources/ios
 
 .idea/
 .ionic/
