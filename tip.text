@@ -1,0 +1,150 @@
+**添加android**
+```
+ionic cordova platform add android
+
+```
+
+**真机调试**
+
+```
+ionic cordova run android -lc -- -d
+-l --livereload 实时重新加载www文件
+-c --consolelogs 将控制台日志打印到终端
+-d --device 部署到设备
+
+```
+
+**android打包**
+|将根目录release-signing.properties 文件复制到/platform/android下，执行命令
+
+```
+ionic cordova build android --release --prod
+
+```
+**logo 和启动图的创建**
+
+```
+ionic cordova resources
+
+```
+
+**插件**
+
+1、极光推送插件 (https://github.com/jpush/jpush-phonegap-plugin)
+
+```
+  ionic cordova plugin add jpush-phonegap-plugin --variable APP_KEY=443eca432eff14581d12c724
+  npm install --save @jiguang-ionic/jpush
+
+```
+
+2、讯飞语音插件 (https://github.com/qinjunbang/xunfeispeaking)
+
+```
+  ionic cordova plugin add  https://github.com/qinjunbang/xunfeispeaking
+
+```
+
+3、拍照、打开图库插件
+
+```
+  ionic cordova plugin add cordova-plugin-camera
+  npm install --save @ionic-native/camera
+
+```
+
+4、拨打电话插件
+
+```
+   ionic cordova plugin add call-number
+   npm install --save @ionic-native/call-number
+
+```
+5、设备网络连接插件
+
+```
+   ionic cordova plugin add cordova-plugin-network-information
+   npm install --save @ionic-native/network
+
+```
+
+6、最小化APP
+
+```
+  ionic cordova plugin add cordova-plugin-appminimize
+  npm install --save @ionic-native/app-minimize
+
+```
+
+7、真机下的提示框插件
+
+```
+  ionic cordova plugin add cordova-plugin-x-toast
+  npm install --save @ionic-native/toast
+
+```
+
+8、文件上传插件，需要安装依赖的cordova-plugin-file插件
+
+```
+  ionic cordova plugin add cordova-plugin-file@5.0.0
+  npm install --save @ionic-native/file
+
+  ionic cordova plugin add cordova-plugin-file-transfer
+  npm install --save @ionic-native/file-transfer
+
+
+```
+
+9、相册多图选择插件
+
+```
+  ionic cordova plugin add cordova-plugin-telerik-imagepicker --variable PHOTO_LIBRARY_USAGE_DESCRIPTION="掌里通需要打开您的图库获取多张图片"
+  npm install --save @ionic-native/image-picker
+
+```
+
+10、获取App版本号插件
+
+```
+  ionic cordova plugin add cordova-plugin-app-version
+  npm install --save @ionic-native/app-version
+
+```
+
+11、获取设备UUID插件
+
+```
+  ionic cordova plugin add cordova-plugin-device
+  npm install --save @ionic-native/device
+
+```
+
+12、Android新权限检查插件，主要配合获取设备的UUID使用
+
+```
+  ionic cordova plugin add cordova-plugin-android-permissions
+  npm install --save @ionic-native/android-permissions
+
+```
+
+13、文件打开插件，可以用于安装apk
+
+```
+  ionic cordova plugin add cordova-plugin-file-opener2
+  npm install --save @ionic-native/file-opener
+
+```
+14、安装调用本机浏览器插件
+```
+  ionic cordova plugin add cordova-plugin-themeablebrowser
+  npm install --save @ionic-native/themeable-browser
+
+```
+
+15、保存图片到相册插件
+```
+  ionic cordova plugin add cordova-plugin-photo-library --variable PHOTO_LIBRARY_USAGE_DESCRIPTION="掌里通需要访问您的相册获取图片或写入图片"
+  npm install --save @ionic-native/photo-library
+
+```

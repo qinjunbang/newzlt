@@ -3,7 +3,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { AlertController, Loading, LoadingController, Platform, ToastController } from 'ionic-angular';
+import { AlertController, Loading, LoadingController, Platform, ToastController, } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { CallNumber } from '@ionic-native/call-number';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,13 +13,12 @@ import { Toast } from '@ionic-native/toast';
 import { File, FileEntry } from '@ionic-native/file';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { AppVersion } from '@ionic-native/app-version';
-import { NativeAudio } from '@ionic-native/native-audio';
 import { Observable } from 'rxjs/Rx';
 import { Device } from '@ionic-native/device';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { FileOpener } from '@ionic-native/file-opener';
-import { ThemeableBrowser, ThemeableBrowserOptions } from '@ionic-native/themeable-browser';
+import { ThemeableBrowser } from '@ionic-native/themeable-browser';
 import { Config } from './Config';
 import { Utils } from './Utils';
 import { PhotoLibrary } from '@ionic-native/photo-library';
@@ -44,7 +43,6 @@ export class NativeService {
     private imagePicker: ImagePicker, // 多图选择
     private appVersion: AppVersion, // 获取App版本号
     private cn: CallNumber,  // 拨打电话
-    private nativeAudio: NativeAudio, // 语音播放
     private device: Device, // 设备UUID组件
     private androidPermissions: AndroidPermissions, // 安卓手机权限获取，主要针对 26以上的版本
     private transfer: FileTransfer, // 文件上传
@@ -469,31 +467,11 @@ export class NativeService {
           });
         }
       }]
-    }).present();
+    });
 
+    alert.present();
   }
 
-  /*
-  *
-  * 播放声音
-  * @param str 字符串
-  * @param site 播放起始位置
-  *
-  * */
-  playAudio (str = '', site = 0) {
-    let arr = str.split(',');
-
-    if (arr.length < 0 || arr.length <= site) {
-      return;
-    }
-
-    this.nativeAudio.play(arr[site], () => {});
-
-    let delayLimit = 300,
-      len = arr[site].length;
-
-    setTimeout(()=>{this.playAudio(str,++site)},delayLimit * len);
-  }
 
   /*
   *
@@ -504,8 +482,6 @@ export class NativeService {
     // 拿之前先看看有没有权限，没有就动态获取
     if (this.checkedAndroidPermissions()) {
       return this.device.uuid;
-    } else {
-      return ''
     }
   }
 
@@ -650,8 +626,7 @@ export class NativeService {
       });
     } else if (this.isIos()) {
       // 苹果安装
-
-      this.themeableBrowser.create(Config.ipaDownLoadUrl, '_blank', Config.options);
+      this.themeableBrowser.create(Config.ipaDownLoadUrl, '_blank', {});
     }
 
   }
