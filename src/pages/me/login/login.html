@@ -1,0 +1,104 @@
+<ion-content>
+  <!--上半部分-->
+  <div class="top-box">
+    <div class="logo">
+      <img src="assets/imgs/logo-white.png" alt=""/>
+    </div>
+    <h2 class="logo-title">掌里通智慧城市</h2>
+  </div>
+
+
+
+  <!--下半部分-->
+  <div class="bottom-box">
+    <div class="login-content">
+
+      <div class="login-bar">
+        <ion-segment [(ngModel)]="login_type">
+          <ion-segment-button value="userName">
+            账号密码登录
+          </ion-segment-button>
+          <ion-segment-button value="mobile">
+            手机验证码登录
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <div [ngSwitch]="login_type">
+        <div class="" *ngSwitchCase="'userName'">
+          <div class="form-group">
+            <ion-row>
+              <ion-col col-2>
+                <ion-label text-center>
+                  <i class="iconfont icon--19"></i>
+                </ion-label>
+
+              </ion-col>
+              <ion-input type="number" maxlength="11" [(ngModel)]="name" col-10 placeholder="手机号/工号"></ion-input>
+            </ion-row>
+          </div>
+          <div class="form-group">
+            <ion-row>
+              <ion-col col-2>
+                <ion-label text-center>
+                  <i class="iconfont icon--16"></i>
+                </ion-label>
+
+              </ion-col>
+              <ion-input type="password" [(ngModel)]="password" col-10 placeholder="密码"></ion-input>
+            </ion-row>
+          </div>
+          <div class="form-group no-border">
+            <div class="role-box">
+              <input type="checkbox" [(ngModel)]="!role" name="role" id="role" (change)="changeRole()">
+              <label for="role">我是商家</label>
+            </div>
+          </div>
+          <div class="form-group no-border">
+            <button ion-button block (click)="login()">登录</button>
+          </div>
+        </div>
+        <div class="" *ngSwitchCase="'mobile'">
+          <div class="form-group">
+            <ion-row>
+              <ion-col col-2>
+                <ion-label text-center>
+                  <ion-icon name="md-phone-portrait"></ion-icon>
+                </ion-label>
+
+              </ion-col>
+              <ion-input type="number" maxlength="11" [(ngModel)]="name" col-10 placeholder="手机号"></ion-input>
+            </ion-row>
+          </div>
+          <div class="form-group">
+            <ion-row>
+              <ion-col col-2>
+                <ion-label text-center>
+                  <ion-icon name="md-text"></ion-icon>
+                </ion-label>
+
+              </ion-col>
+
+              <ion-col col-5>
+                <ion-input type="text" maxlength="6" [(ngModel)]="code"  placeholder="验证码"></ion-input>
+              </ion-col>
+
+              <ion-col col-5 text-right>
+                <button ion-button small class="get-code" [disabled]="timer" (click)="getAuthCode()">{{btnText}}</button>
+              </ion-col>
+            </ion-row>
+          </div>
+          <div class="form-group no-border">
+            <div class="role-box">
+              <input type="checkbox" [(ngModel)]="!role" name="role" id="role" (change)="changeRole()">
+              <label for="role">我是商家</label>
+            </div>
+          </div>
+          <div class="form-group no-border">
+            <button ion-button block (click)="login()">登录</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

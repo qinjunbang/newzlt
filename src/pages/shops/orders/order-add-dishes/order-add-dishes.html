@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>菜单列表</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="defaultType" >
+      <ion-segment-button *ngFor="let item of menuType" value="{{item.id}}" (click)="changeDishList(item.id)">
+        {{item.title}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col col-3 class="menu">
+                <div class="dish-menu {{menuId== menu.id ? 'active':''}}" *ngFor="let menu of dishesMenu; let i=index" (click)="menuClick(menu.id)">{{menu.menu_name}}</div>
+            </ion-col>
+            <ion-col col-9 class="dishes">
+              <div class="dish-list" *ngFor="let dish of dishesList">
+                  <img src="{{serveUrl}}{{dish.thumb}}" class="list-img"/>
+                  <div class="list-con">
+                      <div class="list-title">{{dish.dishes_name}}</div>
+                      <div class="list-sale">月售：{{dish.sales}}</div>
+                      <div class="list-price">
+                          <span class="discount">¥{{dish.discount_price}}</span>
+                          <span class="origin">¥{{dish.price}}</span>
+                      </div>
+                      <div class="handle" *ngIf="dish.is_attr == 0">
+                          <div class="add" (click)="add(dish)">+</div>
+                          <div class="num" [style.display]="!dish.num || dish.num==0? 'none':'block'">{{dish.num}}</div>
+                          <div class="desc" (click)="desc(dish)" [style.display]="dish.num==0 || !dish.num ? 'none':'block'">-</div>
+                      </div>
+                      <div class="regu1" (click)="chooseRegu(dish)" *ngIf="dish.is_attr == 1">选规格</div>
+                  </div>
+              </div>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- 多规格详情 -->
+    <div class="regu-bg" [style.display]="seeRegu ? 'block':'none'" (click)="hiddenRegu()"></div>
+    <div class="regu" [style.display]="seeRegu ? 'block':'none'">
+        <div class="regu-title">{{reguDish.dishes_name}}</div>
+        <div class="regu-con">
+            <div class="regu-con-list" *ngFor="let regu of reguDish.attribute;let I = index">
+                <div class="regu-con-title">{{regu.attribute}}</div>
+                <div class="regu-list">
+                    <div class="regu-list-type {{spec.spec_name == this.reguName[I] ? 'active':'' }}" *ngFor="let spec of regu.spec;let i = index" (click)="selectSpec(spec,I)">{{spec.spec_name}}|{{spec.spec_price}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="regu-bottom">
+            <!-- <div class="regu-price" [style.display]="reguDish.num==0 || !reguDish.num ? 'none':'block'">¥{{reguPrice * reguDish.num}} {{specName(reguSpec)}}</div> -->
+            <div class="regu-price" [style.display]="reguDish.num==0 || !reguDish.num ? 'block':'none'">¥{{reguPrice}}
+                <span class="regu-price-span" >{{specName(reguSpec)}}</span>
+            </div>
+            <div class="join-cart" (click)="joinCart(reguDish)">加入购物车</div>
+        </div>
+    </div>
+
+    <div class="dosome">
+        <div class="see-shop" (click)="seeCart()"><span class="see-text">查看已点</span><span class="dishes-num">{{allNum()}}</span></div>
+        <div class="buy" (click)="buy()">去下单({{allPrice()}})元</div>
+    </div>
+    <!-- 查看已点 -->
+    <div class="shop-cart-bg" [style.display]=" canSee ? 'block':'none'" (click)="seeCart()"></div>
+        <div class="cart-con" [style.display]=" canSee ? 'block':'none'">
+            <div class="cart-title">购物车</div>
+            <div class="cart">
+                <div class="cart-list" *ngFor="let dish of selectDish">
+                    <img src="{{serveUrl}}{{dish.thumb}}"  class="cart-list-img"/>
+                    <div class="cart-list-title" *ngIf="dish.spec">{{dish.dishes_name}}x{{dish.num}}<span class="spec-name">({{specName(dish.spec)}})</span></div>
+                    <div class="cart-list-title" *ngIf="!dish.spec">{{dish.dishes_name}}x{{dish.num}}</div>
+                    <div class="cart-list-price" *ngIf="dish.spec">¥{{specPrice(dish).toFixed(2)}}</div>
+                    <div class="cart-list-price" *ngIf="!dish.spec">¥{{(dish.discount_price * dish.num).toFixed(2)}}</div>
+                    <div class="handle">
+                        <div class="add" (click)="add(dish)">+</div>
+                        <div class="num" [style.display]="!dish.num || dish.num==0 ? 'none':'block'">{{dish.num}}</div>
+                        <div class="desc" (click)="desc(dish)" [style.display]="dish.num==0 || !dish.num ? 'none':'block'">-</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</ion-content>

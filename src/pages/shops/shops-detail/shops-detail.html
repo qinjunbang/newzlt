@@ -1,0 +1,139 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>店铺修改</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>店铺名称</ion-label>
+      <ion-input type="text" [(ngModel)]="shopInfo.shop_name" placeholder="请输入店铺名称"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>经营模块</ion-label>
+      <ion-label>
+        <span class="business-btn" [class.active]="shopInfo.is_takeout" (click)="isTakeout()">配送</span>
+      </ion-label>
+      <ion-label>
+        <span class="business-btn" [class.active]="shopInfo.is_reserve" (click)="isReserve()">预定</span>
+      </ion-label>
+      <ion-label>
+        <span class="business-btn" [class.active]="shopInfo.is_list" (click)="isList()">排队</span>
+      </ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="shopInfo.is_takeout">
+      <ion-label>店铺类型</ion-label>
+      <ion-select placeholder="请选择店铺类型" multiple="true" cancelText="取消" okText="确定" [(ngModel)]="shopInfo.type_id" [compareWith]="compareFn">
+        <ion-option  *ngFor="let st of shopsType" value="{{st.id}}" [selected]="st.id == shopInfo ? 'selected': ''">{{st.catname}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="shopInfo.is_reserve">
+      <ion-label>菜系</ion-label>
+      <ion-select placeholder="请选择菜系" multiple="true" cancelText="取消" okText="确定" [(ngModel)]="shopInfo.type_rid" [compareWith]="compareFn">
+        <ion-option  *ngFor="let res of reserveType" value="{{res.id}}">{{res.catname}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>店铺地址</ion-label>
+      <ion-input type="text" disabled [(ngModel)]="address" placeholder="请输入地址" (click)="getAddress()"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>详细地址</ion-label>
+      <ion-input type="text" [(ngModel)]="shopInfo.detail_address" placeholder="请输入详细地址"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="shopInfo.is_reserve">
+      <ion-label>最低消费</ion-label>
+      <ion-input type="number" [(ngModel)]="shopInfo.minimum" placeholder="默认0（单位元）"></ion-input>
+    </ion-item>
+
+    <div *ngIf="shopInfo.is_takeout">
+      <ion-item>
+        <ion-label>配送范围</ion-label>
+        <ion-input type="number" [(ngModel)]="shopInfo.spend_distance" placeholder="默认3（单位公里）"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>配送费</ion-label>
+        <ion-input type="number" [(ngModel)]="shopInfo.spend" placeholder="默认0（单位元）"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>起送价</ion-label>
+        <ion-input type="number" [(ngModel)]="shopInfo.min_spend" placeholder="12（单位元）"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>配送时间</ion-label>
+        <ion-input type="number" [(ngModel)]="shopInfo.spendtime" placeholder="默认30（单位分钟）"></ion-input>
+      </ion-item>
+
+    </div>
+
+    <ion-item *ngIf="codeList.length > 0">
+      <ion-label>商圈选择</ion-label>
+      <ion-select placeholder="可以选择商圈" cancelText="取消" okText="确定" [(ngModel)]="shopInfo.business_code" >
+
+        <ion-option  *ngFor="let co of codeList" value="{{co.id}}">{{co.zonename}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>营业时间</ion-label>
+      <ion-label class="time-label">
+        <ion-datetime displayFormat="HH:mm" cancelText="取消" doneText="确定" [(ngModel)]="shopInfo.startTime" text-center></ion-datetime>
+      </ion-label>
+      <ion-label class="time-label">
+        <ion-datetime displayFormat="HH:mm" cancelText="取消" doneText="确定" [(ngModel)]="shopInfo.endTime"></ion-datetime>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>营业执照</ion-label>
+      <div class="img-label border" item-end (click)="getImage('lience_pic')">
+        <img src="{{local}}{{shopInfo.lience_pic}}" *ngIf="shopInfo.lience_pic">
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>店铺门面</ion-label>
+      <div class="img-label border" item-end (click)="getImage('shop_pic')">
+        <img src="{{local}}{{shopInfo.shop_pic}}" *ngIf="shopInfo.shop_pic">
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>店铺头像</ion-label>
+      <div class="img-label border" item-end (click)="getImage('shop_avatar')">
+        <img src="{{local}}{{shopInfo.shop_avatar}}" *ngIf="shopInfo.shop_avatar">
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>店主姓名</ion-label>
+      <ion-input type="text" placeholder="请输入姓名" disabled [(ngModel)]="shopInfo.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>联系方式</ion-label>
+      <ion-input type="number" maxlength="11" placeholder="请输入手机号" [(ngModel)]="shopInfo.shop_phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>店铺介绍</ion-label>
+      <ion-textarea placeholder="不能少于五个字" rows="4" [(ngModel)]="shopInfo.note"></ion-textarea>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button block (click)="savaData()">提交</button>
+  </div>
+</ion-content>

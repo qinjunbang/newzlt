@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>房桌二维码</ion-title>
+    <ion-buttons end class="add-menu-icon" >
+      <button ion-button icon-only (click)="downAll()">
+        <ion-icon  color="white" name="ios-download-outline"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+  <ion-grid>
+    <ion-row id="img-box">
+      <ion-col text-center col-6 *ngFor="let c of codeList" (click)="downCodeImg($event, c.title)" class="img-content">
+        <qr-code [value]="c.value" size="150"></qr-code>
+        <p class="room-title">{{c.title}}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

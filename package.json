@@ -40,6 +40,7 @@
     "@ionic/pro": "2.0.3",
     "@ionic/storage": "2.2.0",
     "@jiguang-ionic/jpush": "^1.0.2",
+    "angular2-qrcode": "^2.0.1",
     "call-number": "^1.0.1",
     "cordova-android": "7.0.0",
     "cordova-plugin-android-permissions": "^1.0.0",
@@ -57,7 +58,6 @@
     "cordova-plugin-photo-library": "^2.1.1",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
-    "cordova-plugin-telerik-imagepicker": "^2.2.2",
     "cordova-plugin-themeablebrowser": "^0.2.17",
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-plugin-x-toast": "^2.7.0",
@@ -65,10 +65,10 @@
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "jpush-phonegap-plugin": "^3.4.6",
+    "mx.ferreyra.callnumber": "~0.0.2",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.26",
-    "mx.ferreyra.callnumber": "~0.0.2"
+    "zone.js": "0.8.26"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.0",
@@ -94,9 +94,6 @@
       "cordova-plugin-network-information": {},
       "cordova-plugin-appminimize": {},
       "cordova-plugin-x-toast": {},
-      "cordova-plugin-telerik-imagepicker": {
-        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "掌里通需要打开您的图库获取多张图片"
-      },
       "cordova-plugin-app-version": {},
       "cordova-plugin-android-permissions": {},
       "cordova-plugin-file-opener2": {},

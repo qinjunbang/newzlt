@@ -1,0 +1,27 @@
+add-new-card{
+    .con-bg{
+        background: $bgColor;
+        .title{
+            font-size: 14px;
+            color: #555555;
+            margin-top: 15px;
+            margin-left: 16px;
+        }
+        .my-icon{
+            font-size: 20px;
+            line-height: 34px;
+            color: #bbbbbb
+        }
+        .next{
+            margin: 16px;
+            line-height: 45px;
+            border-radius: 5px;
+            background: $themeColor;
+            text-align: center;
+            font-size: 18px;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        
+    }
+}

@@ -1,0 +1,43 @@
+
+forward-page{
+    .con-bg{
+        background: $bgColor;
+        .forward{
+            padding: 10px 5px;
+            border-radius: 5px;
+            .ion-list-bg{
+                background: #fff;
+                .ion-black{
+                    font-size: 14px;
+                }
+            }
+            .forward-con{
+                font-size: 14px;
+                line-height: 40px;
+                text-indent: 10px;
+                color: #555555;
+            }
+            .font-size{
+                font-size:16px;
+            }
+            .yes{
+                margin: 16px;
+                background: $themeColor;
+                line-height: 40px;
+                font-size: 14px;
+                color: #fff;
+                text-align: center;
+                border-radius: 5px;
+            }
+            .no{
+                margin: 16px;
+                background: #fff;
+                line-height: 40px;
+                font-size: 14px;
+                color: #000;
+                text-align: center;
+                border-radius: 5px;
+            }
+        }
+    }
+}

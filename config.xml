@@ -19,7 +19,6 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -91,9 +90,6 @@
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-appminimize" spec="^1.0.0" />
     <plugin name="cordova-plugin-x-toast" spec="^2.7.0" />
-    <plugin name="cordova-plugin-telerik-imagepicker" spec="^2.2.2">
-        <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="掌里通需要打开您的图库获取多张图片" />
-    </plugin>
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />

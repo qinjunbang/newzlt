@@ -1,0 +1,50 @@
+contact-page {
+  .mobile {
+    color: #3da2fa;
+  }
+  .copy {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+  .box-content {
+    width: 88%;
+    margin: 8% auto;
+    //border: 1px solid red;
+    background-color: #fff;
+    height: 88%;
+    padding: 3px;
+    position: relative;
+  }
+  .text-content {
+    width: 100%;
+    height: 100%;
+    border: 1px solid #3da2fa;
+    padding: 10px;
+  }
+  .rec {
+    width: 6px;
+    height: 10px;
+    background-color: #3da2fa;
+    position: absolute;
+  }
+  .rec-col {
+    height: 18px;
+  }
+  .rec-row {
+    width: 18px;
+    height: 6px;
+  }
+  .top {
+    top: 0;
+  }
+  .left {
+    left: 0;
+  }
+  .right {
+    right: 0;
+  }
+  .bottom {
+    bottom: 0;
+  }
+}

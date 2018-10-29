@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>员工添加</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item>
+      <ion-label>姓名</ion-label>
+      <ion-input type="text" [(ngModel)]="name" placeholder="请输入姓名"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>性别</ion-label>
+      <ion-select placeholder="请选择性别" cancelText="取消" okText="确定" [(ngModel)]="sex">
+        <ion-option value="1">男</ion-option>
+        <ion-option value="0">女</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>职务</ion-label>
+      <ion-select placeholder="请选择职务" cancelText="取消" okText="确定" [(ngModel)]="role">
+        <ion-option value="1">服务员</ion-option>
+        <ion-option value="3">前台</ion-option>
+        <ion-option value="2">经理</ion-option>
+        <ion-option value="0">财务</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>手机号</ion-label>
+      <ion-input type="number" [(ngModel)]="mobile" max="11" placeholder="请输入手机号"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>密码</ion-label>
+      <ion-input type="password" [(ngModel)]="password" placeholder="请输入密码"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button block (click)="saveData()">提交</button>
+  </div>
+</ion-content>

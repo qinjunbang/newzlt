@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>店铺</ion-title>
+    <ion-buttons end class="add-menu-icon" *ngIf="role == -1">
+      <button ion-button icon-only (click)="goToPage(ShopsAddPage)">
+        <ion-icon  color="white" name="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="no-shops" *ngIf="shopsList.length < 1">
+        <img src="assets/imgs/no-shops.png" alt="">
+        <p>空空如也~</p>
+      </div>
+      <ion-list>
+        <ion-item-sliding *ngFor="let shops of shopsList">
+          <ion-item (click)="goToPage(ShopsManagePage, shops.id)">
+            <ion-thumbnail item-start>
+              <img src="{{serverUrl}}{{shops.shop_avatar}}">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{shops.shop_name}}</h2>
+              <p>{{shops.note}}</p>
+            </ion-label>
+            <p item-end *ngIf="shops.is_check == 0">审核中</p>
+            <ion-toggle *ngIf="shops.is_check == 1"  [(ngModel)]="shops.is_open" (ionChange)="shopOpen(shops.id, shops.is_open)"></ion-toggle>
+
+          </ion-item>
+          <ion-item-options side="right" (click)="deleteShop(shops.id)">
+            <button ion-button color="danger">
+              <ion-icon name="ios-trash"></ion-icon>
+              删除
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-list>
+</ion-content>

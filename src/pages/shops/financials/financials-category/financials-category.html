@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>财务管理</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-f6">
+  <ion-list>
+    <button ion-item (click)="goToPage('全部收入')">全部收入</button>
+  </ion-list>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="goToPage(item)">
+      {{ item }}
+    </button>
+  </ion-list>
+</ion-content>

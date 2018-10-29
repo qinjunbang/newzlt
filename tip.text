@@ -148,3 +148,8 @@ ionic cordova resources
   npm install --save @ionic-native/photo-library
 
 ```
+16、二维码生成插件
+```
+  npm install angular2-qrcode --save
+
+```

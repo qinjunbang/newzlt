@@ -1,0 +1,246 @@
+
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title text-center>订单详情</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+    <!-- 配送详情 -->
+    <div *ngIf="ordersList.order_type == 0" class="all-list">
+        <div class="list clearfix">
+            <div class="list-title">订单号</div>
+            <div class="list-right">{{ordersList.order_number}}</div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-title">订单类型</div>
+          <div class="list-right" [ngSwitch]="ordersList.order_type">
+            <span *ngSwitchCase="0">配送</span>
+            <span *ngSwitchCase="1">预定</span>
+            <span *ngSwitchCase="2">排队</span>
+            <span *ngSwitchCase="3">扫码</span>
+          </div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">付款金额</div>
+            <div class="list-right">{{ordersList.order_amount}}</div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">下单时间</div>
+            <div class="list-right">{{ordersList.created_at}}</div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">菜式</div>
+            <div class="list-cai">
+              <span *ngFor="let dish of ordersList.order_detail">{{dish.dishes_name}}x{{dish.goods_number}}、</span>
+            </div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_address">
+            <div class="list-title">下单人</div>
+            <div class="list-right">{{ordersList.order_address.name}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_address">
+            <div class="list-title">联系方式</div>
+            <div class="list-right">{{ordersList.order_address.mobile}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_address">
+            <div class="list-title">收货地址</div>
+            <div class="list-right">{{ordersList.order_address.address}} {{ordersList.order_address.address_detail}}</div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">备注</div>
+            <div class="list-right">{{ordersList.note}}</div>
+        </div>
+        <div *ngIf="ordersList.order_status == 2">
+            <div class="order-status-yes" (click)="receipt()">接单</div>
+            <div class="order-status-no" (click)="reject()">拒单</div>
+        </div>
+        <div *ngIf="ordersList.order_status == -3">
+          <div class="order-status-yes">订单关闭</div>
+        </div>
+        <div *ngIf="ordersList.order_status == 3">
+          <div class="order-status-yes">进行中</div>
+        </div>
+        <div *ngIf="ordersList.order_status == -1">
+            <div class="order-status-yes" (click)="refund()">同意退款</div>
+        </div>
+    </div>
+
+    <!-- 预定详情 -->
+    <div *ngIf="ordersList.order_type == 1" class="all-list">
+        <div class="list clearfix">
+            <div class="list-title">订单号</div>
+            <div class="list-right">{{ordersList.order_number}}</div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-title">订单类型</div>
+          <div class="list-right" [ngSwitch]="ordersList.order_type">
+            <span *ngSwitchCase="0">配送</span>
+            <span *ngSwitchCase="1">预定</span>
+            <span *ngSwitchCase="2">排队</span>
+            <span *ngSwitchCase="3">扫码</span>
+          </div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">全部金额</div>
+            <div class="list-right">{{ordersList.order_price}}</div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">已付定金</div>
+            <div class="list-right">{{ordersList.order_amount}}</div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">下单时间</div>
+            <div class="list-right">{{ordersList.created_at}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_reserve">
+            <div class="list-title">用餐时间</div>
+            <div class="list-right">{{ordersList.order_reserve.arrive_time}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_reserve">
+            <div class="list-title">房间</div>
+            <div class="list-right">{{ordersList.order_reserve.desk_room}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_reserve">
+          <div class="list-title">桌号</div>
+          <div class="list-right">{{ordersList.order_reserve.show_table}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_reserve">
+            <div class="list-title">下单人</div>
+            <div class="list-right">{{ordersList.order_reserve.name}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_reserve">
+            <div class="list-title">联系方式</div>
+            <div class="list-right mobile" (click)="callNumber(ordersList.order_reserve.phone)">{{ordersList.order_reserve.phone}}</div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">菜式</div>
+            <div class="list-cai">
+              <span *ngFor="let dish of ordersList.order_detail">{{dish.dishes_name}}x{{dish.goods_number}}、</span>
+            </div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">备注</div>
+            <div class="list-right">{{ordersList.note}}</div>
+        </div>
+        <div *ngIf="ordersList.order_status == 2">
+            <div class="order-status-yes" (click)="arrive()">客人已到店</div>
+        </div>
+        <div *ngIf="ordersList.order_status == 3">
+            <div class="order-status-yes" (click)="balance()">现金结账</div>
+        </div>
+        <div *ngIf="ordersList.order_status == 3">
+            <div class="order-status-yes" (click)="addDishes()">加菜</div>
+            <!-- <div class="order-status-yes" (click)="editPrice()">修改价格</div> -->
+        </div>
+        <div *ngIf="ordersList.order_status == -1">
+            <div class="order-status-yes" (click)="refund()">同意退款</div>
+        </div>
+        <div *ngIf="ordersList.order_status == 4">
+          <div class="order-status-yes">已完成</div>
+        </div>
+        <div *ngIf="ordersList.order_status == -3">
+          <div class="order-status-yes">订单已关闭</div>
+        </div>
+    </div>
+
+    <!-- 排队详情 -->
+    <div *ngIf="ordersList.order_type == 2" class="all-list">
+        <div class="list clearfix">
+            <div class="list-title">订单号</div>
+            <div class="list-right">{{ordersList.order_number}}</div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-title">订单类型</div>
+          <div class="list-right" [ngSwitch]="ordersList.order_type">
+            <span *ngSwitchCase="0">配送</span>
+            <span *ngSwitchCase="1">预定</span>
+            <span *ngSwitchCase="2">排队</span>
+            <span *ngSwitchCase="3">扫码</span>
+          </div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">付款金额</div>
+            <div class="list-right">{{ordersList.order_amount}}</div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">下单时间</div>
+            <div class="list-right">{{ordersList.created_at}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.qorder">
+            <div class="list-title">用餐人数</div>
+            <div class="list-right">{{ordersList.qorder.people}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.qorder">
+            <div class="list-title">用餐时间</div>
+            <div class="list-right">{{ordersList.qorder.eat_time}}</div>
+        </div>
+        <!-- <div class="list clearfix">
+            <div class="list-title">菜式</div>
+            <div class="list-cai" *ngFor="let dish of ordersList.order_detail">{{dish.dishes_name}}x{{dish.goods_number}}</div>
+        </div> -->
+        <div class="list clearfix" *ngIf="ordersList.order_address">
+            <div class="list-title">下单人</div>
+            <div class="list-right">{{ordersList.order_address.name}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="ordersList.order_address">
+            <div class="list-title">联系方式</div>
+            <div class="list-right">{{ordersList.order_address.mobile}}</div>
+        </div>
+        <div class="list clearfix">
+            <div class="list-title">备注</div>
+            <div class="list-right">{{ordersList.note}}</div>
+        </div>
+        <div *ngIf="ordersList.order_status == 4">
+            <div class="order-status-yes">过号</div>
+        </div>
+    </div>
+
+  <!-- 排队详情 -->
+  <div *ngIf="ordersList.order_type == 3" class="all-list">
+    <div class="list clearfix">
+      <div class="list-title">订单号</div>
+      <div class="list-right">{{ordersList.order_number}}</div>
+    </div>
+    <div class="list clearfix">
+      <div class="list-title">订单类型</div>
+      <div class="list-right" [ngSwitch]="ordersList.order_type">
+        <span *ngSwitchCase="0">配送</span>
+        <span *ngSwitchCase="1">预定</span>
+        <span *ngSwitchCase="2">排队</span>
+        <span *ngSwitchCase="3">扫码</span>
+      </div>
+    </div>
+    <div class="list clearfix">
+      <div class="list-title">付款金额</div>
+      <div class="list-right">{{ordersList.order_amount}}</div>
+    </div>
+    <div class="list clearfix">
+      <div class="list-title">下单时间</div>
+      <div class="list-right">{{ordersList.created_at}}</div>
+    </div>
+    <div class="list clearfix" *ngIf="ordersList.qorder">
+      <div class="list-title">用餐人数</div>
+      <div class="list-right">{{ordersList.qorder.people}}</div>
+    </div>
+    <div class="list clearfix" *ngIf="ordersList.qorder">
+      <div class="list-title">用餐时间</div>
+      <div class="list-right">{{ordersList.qorder.eat_time}}</div>
+    </div>
+    <div class="list clearfix">
+      <div class="list-title">菜式</div>
+      <div class="list-cai">
+        <span *ngFor="let dish of ordersList.order_detail">{{dish.dishes_name}}x{{dish.goods_number}}、</span>
+      </div>
+    </div>
+    <div class="list clearfix">
+      <div class="list-title">备注</div>
+      <div class="list-right">{{ordersList.note}}</div>
+    </div>
+
+    <!--<div *ngIf="ordersList.order_status == 4">-->
+      <!--<div class="order-status-yes">过号</div>-->
+    <!--</div>-->
+  </div>
+
+</ion-content>

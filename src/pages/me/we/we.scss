@@ -1,0 +1,31 @@
+we-page {
+    .we-img{
+        width: 100%;
+        padding: 0 5px;
+        margin-top: 10px;
+        .img{
+            width: 100%
+        }
+    }
+    .we-con{
+        padding: 0 35px;
+        margin-top: 15px;
+        line-height: 25px;
+        .we-list{
+            font-size: 13px;
+            i{
+                width: 10px;
+                height: 10px;
+                display: inline-block;
+                background: #3da2fa;
+                transform: rotate(45deg);
+                margin-right: 10px;
+                margin-left: 5px;
+            }
+        }
+        .we-wechat{
+            margin-top: 20px;
+            color: #555555
+        }
+    }
+}

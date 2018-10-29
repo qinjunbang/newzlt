@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>菜品列表</ion-title>
+    <div class="dish-class" (click)="dishesClass()" >
+      菜单分类
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+
+  <ion-row class="content">
+    <ion-col col-3 class="menu-content">
+      <div class="menu-list"  *ngFor="let m of menuList;" (click)="changeMenu(m.id)" [class]="menuSelect == m.id ? 'menu-list active' : 'menu-list'">{{m.menu_name}}</div>
+    </ion-col>
+    <ion-col col-9>
+      <div class="no-shops" *ngIf="dishesList.length < 1">
+        <img src="assets/imgs/no-shops.png" alt="">
+        <p>空空如也~</p>
+      </div>
+
+      <ion-list class="list-content">
+        <div class="disheslist" *ngFor="let d of dishesList; let i = index;" (click)="editDishes(d.id)">
+          <div class="img">
+            <img src="{{serverUrl}}{{d.thumb}}">
+          </div>
+          <div class="list-inner">
+            <h2>{{d.dishes_name}}</h2>
+            <p>{{d.description}}</p>
+            <p class="price">￥{{d.price}}</p>
+            <div class="buttons-list">
+              <button ion-button *ngIf="d.status" (click)="soldOut($event, d.id, d.status, d.shop_id)">下架</button>
+              <button ion-button *ngIf="!d.status" (click)="soldOut($event, d.id, d.status, d.shop_id)">重新上架</button>
+              <button ion-button (click)="deleteDishes($event, d.id)">删除</button>
+            </div>
+          </div>
+        </div>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-title text-center (click)="addDishes()">新建菜品</ion-title>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,98 @@
+page-orders-list {
+    .con-bg{
+        background: $bgColor;
+        ion-toolbar{
+            background: #fff;
+        }
+        .orders{
+            margin-top: 0px;
+            .orders-list{
+                margin-top: 8px;
+                ion-list{
+                    margin-bottom: 0;
+                    height: 40px;
+                    line-height: 40px;
+                    ion-item{
+                        font-size: 14px;
+                        height: 40px;
+                        min-height: 0;
+                        padding: 0 10px;
+                        .time{
+                            font-size: 14px;
+                            color: #666;
+                        }
+                    }
+                }
+            }
+            .orders-con{
+                background: #fff;
+                border-top: 1px solid #eee;
+                padding: 0 10px 10px;
+                position: relative;
+                .list{
+                    font-size: 14px;
+                    line-height: 20px;
+                    margin-top: 15px;
+                    .list-left{
+                        width: 25%;
+                        float: left;
+                    }
+                    .list-right{
+                        width:74%;
+                        float: left;
+                    }
+                }
+                .add-dish{
+                    font-size: 14px;
+                    line-height: 36px;
+                    margin-top: 15px;
+                    text-align: center;
+                    color: #fff;
+                    border-radius: 5px;
+                    background: $themeColor;
+                }
+            }
+        }
+    }
+
+  .top-bar {
+    background: #fff;
+    border-radius: 0!important;
+
+  }
+  .top-bar ion-segment-button {
+    position: relative;
+    border: 0 none!important;
+    border-radius: 0!important;
+  }
+  .segment-ios .segment-button {
+    color: #333;
+  }
+  .segment-ios .segment-button.segment-activated {
+    color: #3da2fa;
+    background-color: #fff;
+    opacity: 1;
+    -webkit-transition: 100ms all linear;
+    transition: 100ms all linear;
+  }
+  .top-bar ion-segment-button.segment-activated:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 1.6rem;
+    height: 2px;
+    margin-left: -.8rem;
+    background-color: #3da2fa;
+    display: block;
+  }
+  .mobile {
+    color: #3da2fa;
+  }
+  .status {
+    color: #3da2fa;
+    position: absolute;
+    top: 3px;
+    right: 10px;
+  }
+}

@@ -1,0 +1,26 @@
+address-page {
+  #map {
+    width: 96%;
+    height: 370px;
+    margin: 20px auto;
+  }
+  #place {
+    height: 45px;
+    margin: 0.4rem 0.2rem;
+    padding: 0 1em;
+    width: 100%;
+  }
+  .text-info {
+    color: #999;
+    padding: 0 16px;
+  }
+  .address-list {
+    height: 100%;
+    background-color: #ccc;
+  }
+  .scroll {
+    overflow: hidden;
+    height: 0;
+    padding-bottom: 150%;
+  }
+}

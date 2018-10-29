@@ -1,0 +1,50 @@
+page-financials-list {
+  .order-info {
+    border-top: 1px solid #bfbfbf;
+    padding-top: 1rem;
+  }
+  .footer-panel {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: #3da2fa;
+    border-radius: 40px;
+  }
+  .text {
+    color: #fff;
+    font-size: 1.6rem;
+  }
+  .top-bar {
+    background: #fff;
+    border-radius: 0!important;
+
+  }
+  .top-bar ion-segment-button {
+    position: relative;
+    border: 0 none!important;
+    border-radius: 0!important;
+  }
+  .segment-ios .segment-button {
+    color: #333;
+  }
+  .segment-ios .segment-button.segment-activated {
+    color: #3da2fa;
+    background-color: #fff;
+    opacity: 1;
+    -webkit-transition: 100ms all linear;
+    transition: 100ms all linear;
+  }
+  .top-bar ion-segment-button.segment-activated:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 1.6rem;
+    height: 2px;
+    margin-left: -.8rem;
+    background-color: #3da2fa;
+    display: block;
+  }
+
+}
+

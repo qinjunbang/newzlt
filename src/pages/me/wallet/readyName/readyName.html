@@ -1,0 +1,33 @@
+<ion-header class="header-light">
+    <ion-navbar color="primary">
+        <ion-title>实名认证</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+    <div *ngIf="realName == ''">
+        <ion-list>
+            <ion-item>
+                <ion-label>姓名：</ion-label>
+                <ion-input type="text" [(ngModel)]="name"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>身份证号：</ion-label>
+                <ion-input type="text" [(ngModel)]="card"></ion-input>
+            </ion-item>
+        </ion-list>
+    
+        <div padding>
+            <button ion-button block (click)="readyName()">实名认证</button>
+        </div>
+    </div>
+
+    <div class="already" *ngIf="realName != ''">
+        <div class="al-ready">您已经实名认证了</div>
+        <div class="al-con">
+            <div class="al-list">姓名：{{realName}}</div>
+            <div class="al-list">身份证号：{{cardNo}}</div>
+        </div>  
+    </div>
+    
+</ion-content>

@@ -34,18 +34,23 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
+  primary:    #3da2fa,
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222222,
+  white:      #ffffff,
+  gray:       #333333,
+  lightgrey:  #666666,
 );
+
+
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$button-ios-border-radius: 6px;
 
 
 
@@ -86,3 +91,26 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+// my Ionicons Fonts
+@import "assets/myfont/myfont";
+
+//通用背景颜色
+$bgColor: #f6f6f6;
+
+//主题颜色
+$themeColor: #3b95e3;
+
+//主题字体颜色
+$fontColor: #333;
+
+//红色
+$redColor: #bd3d3d;
+
+//清除浮动
+.clearfix:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+
+// 边框统一
+$hairlines-width: 1px;
+$list-border-color: #e0dfe4;
+

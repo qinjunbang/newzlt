@@ -1,0 +1,49 @@
+page-login {
+  .top-box {
+    overflow: hidden;
+    background-color: #3da2fa;
+    height: 50%;
+  }
+  .bottom-box {
+    background-color: #f0f0f0;
+    height: 50%;
+  }
+  .logo {
+    width: 115px;
+    height: 115px;
+    margin: 6rem auto 0;
+  }
+  .logo-title {
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+  }
+  .login-content {
+    width: 94%;
+    margin: 0 auto;
+    background-color: #fff;
+    overflow: hidden;
+    border-radius: 6px;
+    padding: 5% 0 10%;
+    position: relative;
+    top: -21%;
+  }
+  .login-content .form-group {
+    width: 80%;
+    margin: 15px auto 30px;
+    border: 1px solid #d2d2d2;
+    border-radius: 6px;
+  }
+  .login-content .form-group ion-label {
+    color: #999;
+  }
+  .get-code {
+    height: 2.5rem;
+  }
+  .login-bar {
+    width: 80%;
+    margin: 15px auto;
+  }
+
+}

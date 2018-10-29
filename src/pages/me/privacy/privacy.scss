@@ -1,0 +1,30 @@
+privacy {
+    .header-light{
+        background: #fff;
+        
+    }
+    .pravicy{
+        width: 100%;
+        padding: 0 12.5px 0 25px;
+        box-sizing: border-box;
+    }
+    .pravicy-list{
+        font-size: 14px;
+        color: #0d0d0d;
+        line-height: 20px;
+        position: relative;
+        margin-top: 22.5px;
+    }
+    .pravicy-list:nth-child(1){
+        margin-top: 10px;
+    }
+    .pravicy-list::before{
+        position: absolute;
+        content: '';
+        width: 2.5px;
+        height: 12.5px;
+        background: #3b95e3;
+        left: -12.5px;
+        top: 4px;
+    }
+}

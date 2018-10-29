@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>添加菜品</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+    <ion-list>
+        <ion-item>
+            <ion-label>菜名：</ion-label>
+            <ion-input type="text" [(ngModel)]="dishName"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>价格：</ion-label>
+            <ion-input type="number" [(ngModel)]="dishPrice"></ion-input>
+            <div item-end>元</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>选择菜式分类：</ion-label>
+            <ion-select [(ngModel)]="dishesListSelect" (ionChange)="getSelect($event)" okText="确认" cancelText="取消">
+                <ion-option *ngFor="let item of dishesList" value="{{item.id}}">{{item.menu_name}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="haosha">
+            <div class="regular">选择多规格：
+                <div class="addClass" (click)="addRegular()">添加</div>
+            </div>
+            <div *ngFor="let regu of regularList">
+                <div class="reg-class">
+                    <div class="reg-class-title">{{regu.name}}:</div>
+                    <div class="reg-close iconfont icon-weibiaoti--28" (click)="deleteRegular(regu.name)"></div>
+                    <div class="reg-add iconfont icon-weibiaoti--28" (click)="addRegularDetail(regu.name)"></div>
+                </div>
+                <div class="reg-class clearfix">
+                    <div class="reg-list" *ngFor="let list of regu.regu">
+                        {{list}}
+                        <div class="reg-close iconfont icon-weibiaoti--28" (click)="deleteRegularDetail(list)"></div>
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>折扣：</ion-label>
+            <ion-input type="number" value="{{discount}}" [(ngModel)]="discount"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>是否推荐：</ion-label>
+          <ion-select [(ngModel)]="recommend" cancelText="取消" okText="确定">
+            <ion-option value="0">否</ion-option>
+            <ion-option value="1">是</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>介绍：</ion-label>
+            <ion-textarea type="text" value="{{text}}" [(ngModel)]="text" autoresize="100" placeholder="菜式介绍"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+            <div class="img-title">添加图片</div>
+            <div class="images">
+                <div class="img-list clearfix">
+                  <div class="add-img"  *ngFor="let img of imgArr; let i = index"  (click)="chooseImg('update', i)">
+                    <img src="{{serveUrl}}{{img}}" />
+                  </div>
+                  <div class="add-img" (click)="chooseImg('add')">
+                      <div class="iconfont icon-app-add add-img-icon"></div>
+                  </div>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+
+    <div padding>
+        <button ion-button block (click)="addDishes()">确认添加</button>
+    </div>
+</ion-content>

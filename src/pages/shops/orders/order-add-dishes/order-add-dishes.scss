@@ -1,0 +1,324 @@
+order-add-dishes{
+    .con-bg{
+        ion-grid{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 44px;
+            bottom: 50px;
+            background: #fff;
+            padding: 0;
+            ion-row{
+                height: 100%;
+                ion-col{
+                    padding: 0;
+                }
+            }
+            .menu{
+                background: #eeeeee;
+                .dish-menu{
+                    color:$fontColor;
+                    line-height: 50px;
+                    text-align: center;
+                }
+                .active{
+                    background: #fff;
+                }
+                
+            }
+            .dishes{
+                padding-left: 12px;
+                padding-right: 5px;
+                .dish-list{
+                    height: 65px;
+                    width: 100%;
+                    display: flex;
+                    margin-top: 12px;
+                    position: relative;
+                    .list-img{
+                        width: 65px;
+                        height: 65px;
+                    }
+                    .list-con{
+                        padding-left: 10px;
+                        flex: 1;
+                        .list-title{
+                            width: 100%;
+                            font-size: 16px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                        .list-sale{
+                            color: #999;
+                            font-size: 12px;
+                            line-height: 24px;
+                        }
+                        .list-price{
+                            margin-top: 2px;
+                            .origin{
+                                font-size: 10px;
+                                color:#999;
+                                text-decoration:line-through
+                            }
+                            .discount{
+                                font-size: 14px;
+                                color:$redColor;
+                            }
+                        }
+                        .handle{
+                            position: absolute;
+                            right: 0;
+                            bottom: 5px;
+                            width: 60px;
+                            height: 20px;
+                            border-radius: 10px;
+                            text-align: center;
+                            line-height: 20px;
+                            .desc{
+                                width: 20px;
+                                height: 20px;
+                                border: 1px solid #666;
+                                border-radius: 10px;
+                                float: right;
+                                overflow: hidden;
+                            }
+                            .num{
+                                float: right;
+                                width: 20px;
+                            }
+                            .add{
+                                width: 20px;
+                                height: 20px;
+                                border: 1px solid $themeColor;
+                                border-radius: 10px;
+                                float: right;
+                                color:#fff;
+                                background: $themeColor;
+                                overflow: hidden;
+                            }
+                        }
+                        .regu1{
+                            position: absolute;
+                            right: 0;
+                            bottom: 5px;
+                            width: 60px;
+                            height: 20px;
+                            border-radius: 10px;
+                            text-align: center;
+                            line-height: 20px;
+                            background: $themeColor;
+                            color: #fff;
+                            font-size: 12px;
+                        }
+                        
+                    }
+                }
+            }
+        }
+        .dosome{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            font-size: 15px;
+            border-top: 1px solid #eeeeee;
+            .see-shop{
+                float: left;
+                width: 50%;
+                position: relative;
+                .see-text{
+                    display: inline-block;
+                    height: 50px;
+                    line-height: 50px;
+                }
+                .dishes-num{
+                    display: inline-block;
+                    width: 18px;
+                    height: 18px;
+                    line-height: 18px;
+                    border-radius: 50%;
+                    background: $redColor;
+                    text-align: center;
+                    color: #fff;
+                    margin-left: 5px;
+                    font-size: 12px;
+                    overflow: hidden;
+                }
+            }
+            .buy{
+                background: $themeColor;
+                float: left;
+                width: 50%;
+                color: #fff;
+                line-height: 50px;
+            }
+        }
+
+        .shop-cart-bg{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 90;
+        }
+
+
+        .cart-con{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 50px;
+            background: #fff;
+            z-index: 99;
+            .cart-title{
+                background: #eeeeee;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 15px;
+                width: 100%;
+            }
+            .cart{
+                .cart-list{
+                    width: 100%;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    justify-content:space-between;
+                    padding: 0 10px;
+                    color: #3d4145;
+                    font-size: 15px;
+                    border-top: 1px solid #eee;
+                    .cart-list-img{
+                        width: 38px;
+                        height: 20px;
+                    }
+                    .cart-list-title{
+                        overflow: hidden;
+                        .spec-name{
+                            font-size: 10px;
+                            color: #999
+                        }
+                    }
+                    .cart-list-price{
+
+                    }
+                    .handle{
+                        width: 60px;
+                        height: 20px;
+                        border-radius: 10px;
+                        text-align: center;
+                        line-height: 20px;
+                        .desc{
+                            width: 20px;
+                            height: 20px;
+                            border: 1px solid #666;
+                            border-radius: 10px;
+                            float: right;
+                            overflow: hidden;
+                        }
+                        .num{
+                            float: right;
+                            width: 20px;
+                        }
+                        .add{
+                            width: 20px;
+                            height: 20px;
+                            border: 1px solid $themeColor;
+                            border-radius: 10px;
+                            float: right;
+                            color:#fff;
+                            background: $themeColor;
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
+        }
+
+        .regu-bg{
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 50;
+        }
+        .regu{
+            position: absolute;
+            left: 15%;
+            right: 15%;
+            top: 20%;
+            background: #fff;
+            z-index: 99;
+            border-radius: 5px;
+            .regu-title{
+                width: 100%;
+                line-height: 33px;
+                font-size: 16px;
+                text-align: center
+            }
+            .regu-con{
+                padding: 0 10px;
+                margin-bottom: 10px;
+                .regu-con-list{
+                    margin-top: 5px;
+                    font-size: 14px;
+                    .regu-list{
+                        margin-top: 5px;
+                        .regu-list-type{
+                            padding: 2px 5px;
+                            border: 1px solid #777;
+                            color: #777;
+                            font-size: 12px;
+                            display: inline-block;
+                            margin-right: 5px;
+                        }
+                        .regu-list-type.active{
+                            border: 1px solid $themeColor;
+                            color: $themeColor;
+                        }
+                    }
+                }
+            }
+            .regu-bottom{
+                width: 100%;
+                height: 36px;
+                background: #e4eef1;
+                padding: 0 10px;
+                .regu-price{
+                    float: left;
+                    color: red;
+                    line-height: 36px;
+                    font-size: 16px;
+                    .regu-price-span{
+                        font-size: 11px;
+                        color: #999;
+                    }
+                }
+                .join-cart{
+                    float: right;
+                    height: 22px;
+                    margin-top: 7px;
+                    line-height: 22px;
+                    border-radius: 12.5px;
+                    width: 90px;
+                    text-align: center;
+                    color: #fff;
+                    font-size: 12px;
+                    background: $themeColor;
+                }
+            }
+        }
+        
+    }
+    
+    
+}

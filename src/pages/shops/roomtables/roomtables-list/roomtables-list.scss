@@ -1,0 +1,68 @@
+page-roomtables-list {
+  .box {
+    color: #fff;
+    width: 65px;
+    height: 65px;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 65px;
+    margin: 0 auto;
+  }
+  .box span {
+    display: inline-block;
+    line-height: 20px;
+    vertical-align: middle;
+    margin: 5px;
+  }
+  .round {
+    border-radius: 50%;
+  }
+
+  .success {
+    background-color: #5cb85c;
+  }
+  .danger {
+    background-color: #d9534f;
+  }
+  .warning {
+    background-color: #f0ad4e;
+  }
+  .header {
+    color: #333;
+  }
+  .mt-10 {
+    margin-top: 1rem;
+  }
+  .room-info div.info {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  .room-info div.info b {
+    margin-left: 6px;
+  }
+  .see-code {
+    color: #fff;
+  }
+  .refresh-icon {
+    font-size: 3.28rem;
+  }
+  .refresh-btn:active {
+    animation: none;
+  }
+
+  .refresh-btn:focus .refresh-icon::before {
+    animation: 0.6s rotatefresh 1;
+  }
+
+  @keyframes rotatefresh {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+      transition-duration: 0.6s;
+      transition: 0.6s;
+    }
+  }
+}

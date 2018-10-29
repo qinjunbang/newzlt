@@ -2,8 +2,8 @@
  * Created by HIAPAD on 2018/10/25.
  */
 export class Config {
-  public static app_serve_url = 'https://www.zltgs.com/'; // 打包
-  // public static app_serve_url = 'http://localhost:8100/'; // web浏览器
+  // public static app_serve_url = 'https://www.zltgs.com/'; // 打包
+  public static app_serve_url = 'http://localhost:8100/'; // web浏览器
   // public static appserve_url = 'http://10.0.0.3:8100/'; // 真机调试
   public static app_upload_serve_url = 'https://www.zltgs.com/'; 图片上传服务器
   public static token = ''; // token

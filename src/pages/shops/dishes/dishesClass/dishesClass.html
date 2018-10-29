@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>菜品分类</ion-title>
+    <ion-buttons end class="add-menu-icon" >
+      <button ion-button icon-only (click)="add()">
+        <ion-icon  color="white" name="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+    <ion-list>
+      <ion-item *ngFor="let list of dishesList">
+        <ion-label>{{list.menu_name}}</ion-label>
+        <div item-end class="del-color" (click)="edit(list.id,list.menu_name,list.menu_sort)">编辑</div>
+        <div item-end class="del-color" (click)="delete(list.id)">删除</div>
+      </ion-item>
+    </ion-list>
+</ion-content>

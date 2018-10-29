@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title text-center>编辑房桌</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+    <ion-list>
+        <ion-item>
+          <ion-label >房间/桌号名</ion-label>
+          <ion-input type="text" [(ngModel)]="name" value="{{name}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>类型</ion-label>
+            <ion-select [(ngModel)]="type" okText="确认" cancelText="取消">
+              <ion-option value="{{item.id}}" *ngFor="let item of shopsList" [selected]="item.id == type ? 'selected' : ''">{{item.title}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item class="business-item" *ngIf="introduce.length > 0">
+          <span *ngFor="let item of introduce;let i = index;" class="business-btn" [class.active]="item.className" (click)="changeIntroduce(i)">{{item.text}}</span>
+        </ion-item>
+        <ion-item>
+          <ion-label >容纳人数</ion-label>
+          <ion-input type="number" [(ngModel)]="hold" value="hold"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label >最低消费</ion-label>
+          <ion-input type="number" [(ngModel)]="min_consumption" value="min_consumption"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >是否开启二维码</ion-label>
+            <ion-select [(ngModel)]="lock_qrcode" okText="确认" cancelText="取消">
+              <ion-option value="{{item.id}}" *ngFor="let item of codeList" [selected]="item.id == lock_qrcode ? 'selected' : ''">{{item.title}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>备注：</ion-label>
+            <ion-textarea type="text" value="{{note}}" [(ngModel)]="note" autoresize="100" placeholder="房间备注"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <div class="img-title">添加图片</div>
+            <div class="images">
+                <div class="img-list clearfix">
+                    <div class="add-img"  *ngFor="let img of imgArr; let i = index"  (click)="chooseImg('update', i)">
+                        <img src="{{serverUrl}}{{img}}" />
+                    </div>
+                    <div class="add-img" (click)="chooseImg('add')">
+                        <div class="iconfont icon-app-add add-img-icon"></div>
+                    </div>
+                </div>
+            </div>
+        </ion-item>
+      </ion-list>
+
+      <div class="add" (click)="edit()">确认修改</div>
+      <div class="delete" (click)="deleteTable()">删除房桌</div>
+</ion-content>

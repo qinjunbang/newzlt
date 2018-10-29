@@ -1,0 +1,201 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>订单管理</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="下拉刷新" refreshingSpinner="circles" refreshingText="刷新中..."></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="defaultType" (click)="seeOrders()" class="top-bar">
+      <ion-segment-button *ngFor="let item of menuType" value="{{item.id}}">
+        {{item.title}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
+  <div padding class="padding">
+    <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="defaultList" (click)="seeOrders()">
+          <ion-segment-button *ngFor="let item of menuList" value="{{item.id}}">
+            {{item.title}}
+          </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+  </div>
+
+  <div class="orders" *ngFor="let orders of ordersList">
+    <!-- 配送列表 -->
+    <div class="orders-list" (click)="listDetail(orders.id,orders.order_type)" *ngIf="orders.order_type == 0">
+      <ion-list no-lines>
+        <ion-item>订单号：{{orders.order_number}}
+          <div item-end class="time">{{orders.created_at}}</div>
+        </ion-item>
+      </ion-list>
+      <div class="orders-con">
+        <div class="list clearfix">
+          <div class="list-left">菜式</div>
+          <div class="list-right">
+            <div *ngFor="let dish of orders.order_detail">{{dish.dishes_name}}x{{dish.goods_number}}</div>
+          </div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-left">付款金额</div>
+          <div class="list-right">{{orders.order_amount}}</div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-left">下单人</div>
+          <div class="list-right">{{orders.order_address.name}}</div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-left">联系方式</div>
+          <div class="list-right mobile" (click)="callNumber($event, orders.order_address.mobile)">{{orders.order_address.mobile}}</div>
+        </div>
+        <div class="status" [ngSwitch]="orders.order_status">
+            <p *ngSwitchCase="0">刚创建</p>
+            <p *ngSwitchCase="1">待支付</p>
+            <p *ngSwitchCase="2">待发货</p>
+            <p *ngSwitchCase="3">待收货</p>
+            <p *ngSwitchCase="4">已收货待评价</p>
+            <p *ngSwitchCase="-1">发起退单</p>
+            <p *ngSwitchCase="-2">同意退款</p>
+            <p *ngSwitchCase="-3">订单关闭</p>
+        </div>
+      </div>
+    </div>
+    <!-- 预定列表 -->
+    <div class="orders-list" (click)="listDetail(orders.id,orders.order_type)" *ngIf="orders.order_type == 1">
+      <ion-list no-lines>
+        <ion-item>订单号：{{orders.order_number}}
+          <div item-end class="time">{{orders.created_at}}</div>
+        </ion-item>
+      </ion-list>
+      <div class="orders-con">
+        <div class="list clearfix">
+          <div class="list-left">菜式</div>
+          <div class="list-right">
+            <div  *ngFor="let dish of orders.order_detail">{{dish.dishes_name}}x{{dish.goods_number}}</div>
+          </div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-left">付款金额</div>
+          <div class="list-right">{{orders.order_amount}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="orders.rorder.desk_room">
+          <div class="list-left">房间</div>
+          <div class="list-right">{{orders.rorder.desk_room}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="orders.rorder.show_table">
+          <div class="list-left">桌号</div>
+          <div class="list-right">{{orders.rorder.show_table}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="orders.rorder">
+          <div class="list-left">预定时间</div>
+          <div class="list-right">{{orders.rorder.arrive_time}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="orders.rorder">
+          <div class="list-left">下单人</div>
+          <div class="list-right">{{orders.rorder.name}}</div>
+        </div>
+        <div class="list clearfix" *ngIf="orders.rorder">
+          <div class="list-left">联系方式</div>
+          <div class="list-right mobile" (click)="callNumber($event, orders.rorder.phone)">{{orders.rorder.phone}}</div>
+        </div>
+        <div class="status" [ngSwitch]="orders.order_status">
+          <p *ngSwitchCase="0">刚创建</p>
+          <p *ngSwitchCase="1">待支付</p>
+          <p *ngSwitchCase="2">已支付</p>
+          <p *ngSwitchCase="3">进行中</p>
+          <p *ngSwitchCase="4">已完成待评价</p>
+          <p *ngSwitchCase="5">已完成已评价</p>
+          <p *ngSwitchCase="-1">同意退款</p>
+          <p *ngSwitchCase="-1">发起退单</p>
+          <p *ngSwitchCase="-2">同意退款</p>
+          <p *ngSwitchCase="-3">订单关闭</p>
+        </div>
+      </div>
+    </div>
+    <!-- 排队列表 -->
+    <div class="orders-list" (click)="listDetail(orders.id,orders.order_type)" *ngIf="orders.order_type == 2">
+        <ion-list no-lines>
+          <ion-item>订单号：{{orders.order_number}}
+            <div item-end class="time">{{orders.created_at}}</div>
+          </ion-item>
+        </ion-list>
+        <div class="orders-con">
+          <div class="list clearfix">
+            <div class="list-left">菜式</div>
+            <div class="list-right">
+              <div  *ngFor="let dish of orders.order_detail">{{dish.dishes_name}}x{{dish.goods_number}}</div>
+            </div>
+          </div>
+          <div class="list clearfix">
+            <div class="list-left">付款金额</div>
+            <div class="list-right">{{orders.order_amount}}</div>
+          </div>
+          <div class="list clearfix" *ngIf="orders.order_address">
+            <div class="list-left">下单人</div>
+            <div class="list-right">{{orders.order_address.name}}</div>
+          </div>
+          <div class="list clearfix">
+            <div class="list-left">用餐人数</div>
+            <div class="list-right">{{orders.qorder.people}}</div>
+          </div>
+          <div class="list clearfix">
+            <div class="list-left">用餐时间</div>
+            <div class="list-right">{{orders.qorder.eat_time}}</div>
+          </div>
+          <div class="status" [ngSwitch]="orders.order_status">
+            <p *ngSwitchCase="0">刚创建</p>
+            <p *ngSwitchCase="1">待支付</p>
+            <p *ngSwitchCase="2">客人已到店</p>
+            <p *ngSwitchCase="3">进行中</p>
+            <p *ngSwitchCase="4">已完成待评价</p>
+            <p *ngSwitchCase="5">已完成已评价</p>
+            <p *ngSwitchCase="-1">同意退款</p>
+          </div>
+        </div>
+      </div>
+    <!-- 扫码列表 -->
+    <div class="orders-list" (click)="listDetail(orders.id,orders.order_type)" *ngIf="orders.order_type == 3">
+      <ion-list no-lines>
+        <ion-item>订单号：{{orders.order_number}}
+          <div item-end class="time">{{orders.created_at}}</div>
+        </ion-item>
+      </ion-list>
+      <div class="orders-con">
+        <div class="list clearfix">
+          <div class="list-left">付款金额</div>
+          <div class="list-right">{{orders.order_amount}}</div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-left">桌号</div>
+          <div class="list-right">{{orders.orderscan.desk_name}}</div>
+        </div>
+        <div class="list clearfix">
+          <div class="list-left">菜式</div>
+          <div class="list-right">
+            <div *ngFor="let food of orders.order_detail">{{food.dishes_name}}x{{food.goods_number}}、</div>
+          </div>
+        </div>
+        <div class="status" [ngSwitch]="orders.order_status">
+          <p *ngSwitchCase="0">刚创建</p>
+          <p *ngSwitchCase="1">待支付</p>
+          <p *ngSwitchCase="2">进行中</p>
+          <p *ngSwitchCase="3">进行中</p>
+          <p *ngSwitchCase="4">已完成待评价</p>
+          <p *ngSwitchCase="5">已完成已评价</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(doInfinite($event))">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="正在加载">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

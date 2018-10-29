@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title text-center>员工列表</ion-title>
+    <ion-buttons end class="add-menu-icon" >
+      <button ion-button icon-only (click)="goToPage(EmployeesAddPage)">
+        <ion-icon  color="white" name="md-add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="no-shops" text-center *ngIf="employees_list.length < 1">
+    <img src="assets/imgs/no-shops.png" alt="">
+    <p text-center>您还没有添加任何员工~</p>
+  </div>
+  <ion-list>
+    <ion-item-sliding *ngFor="let em of employees_list">
+      <ion-item (click)="goToPage(EmployeesDetailPage, em.id)">
+        <!--<ion-thumbnail item-start>-->
+          <!--<img src="">-->
+        <!--</ion-thumbnail>-->
+        <ion-avatar item-left>
+          <img src="https://ionicframework.com/dist/preview-app/www/assets/img/thumbnail-totoro.png">
+        </ion-avatar>
+        <h2>{{em.name}} ({{em.rolename}})</h2>
+        <p>手机号：{{em.mobile}}</p>
+
+        <button item-end text-right ion-button clear small class="del-btn">
+          <ion-icon name="ios-trash" (click)="deleteEmployees(em.id)"></ion-icon>
+        </button>
+
+      </ion-item>
+    </ion-item-sliding>
+
+  </ion-list>
+</ion-content>

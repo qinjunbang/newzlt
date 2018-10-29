@@ -4,5 +4,11 @@
     "cordova": {}
   },
   "type": "ionic-angular",
-  "pro_id": "d17091da"
+  "pro_id": "d17091da",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "https://www.zltgs.com/api"
+    }
+  ]
 }

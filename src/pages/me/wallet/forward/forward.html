@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>提现</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="con-bg">
+    <div class="forward">
+        <ion-list inset class="ion-list-bg">
+            <ion-item class="ion-black">
+                <ion-label>到账银行卡</ion-label>
+                <ion-select [(ngModel)]="cardId" okText="确认" cancelText="取消">
+                    <ion-option value="{{cards.id}}" *ngFor="let cards of cardsList">{{cards.bank_name}}({{cards.account_number.substr(cards.account_number.length-4)}})</ion-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked class="font-size">提现金额 ¥:</ion-label>
+                <ion-input type="number" placeholder="在些输入提现金额，大于100元" [(ngModel)]="money" max="5"></ion-input>
+            </ion-item>
+            <div class="forward-con">每日交易金额10000.0元</div>
+        </ion-list>
+        <div class="yes" (click)="forward()">提现</div>
+        <div class="no" (click)="return()">取消</div>
+    </div>
+</ion-content>

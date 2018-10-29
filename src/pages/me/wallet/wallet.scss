@@ -1,0 +1,39 @@
+wallet-page {
+    .detail{
+        color: #fff;
+        float: right;
+        margin-right: 5px;
+    }
+    .con-bg{
+        background: #f6f6f6;
+        .wallet{
+            width: 100%;
+            padding: 0 10px;
+            height: 130px;
+            background: #fff;
+            .wallet-title{
+                width: 100%;
+                float: left;
+                margin-top: 16px;
+                font-size: 13px;
+                color: #555555;
+            }
+            .money{
+                width: 100%;
+                float: left;
+                font-size: 30px;
+                font-weight: bold;
+                line-height: 80px;
+            }
+        }
+        .list-ion{
+            margin-top: 10px;
+            margin-bottom: 0px;
+            .my-icon{
+                font-size: 20px;
+                line-height: 34px;
+                color: #bbbbbb
+            }
+        }
+    }
+}
